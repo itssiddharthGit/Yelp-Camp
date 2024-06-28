@@ -20,10 +20,10 @@ const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 const MongoStore = require('connect-mongo');
-const databaseURL = process.env.DB_URL;
+const mongoUrl  = process.env.DB_URL;
 
 const dburl = "mongodb://localhost:27017/yelp-camp";
-mongoose.connect(databaseURL, {
+mongoose.connect(mongoUrl , {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -52,7 +52,7 @@ app.use(mongoSanitize({
 }));
 
 const store = MongoStore.create({
-    mongoUrl: databaseURL,
+    mongoUrl: mongoUrl ,
     touchAfter: 24 * 60 * 60,
     crypto: {
         secret: process.env.SECRET
